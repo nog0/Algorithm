@@ -12,6 +12,7 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode p = head;
         ListNode q = head;
+        ListNode r = head;
         if(p == null || p.next==null){
             return null;
         }
@@ -19,6 +20,13 @@ public class Solution {
             p = p.next;
             q = q.next.next;
         } while(q!=null && q.next!=null && p!=q);
-        return p == q ? p : null;
+        if(p!=q){
+            return null;
+        }
+        while(p!=r){
+            p = p.next;
+            r = r.next;
+        }
+        return r;
     }
 }
